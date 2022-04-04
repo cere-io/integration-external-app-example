@@ -215,7 +215,7 @@ const Header = () => {
                                     <p></p>
                                     <div align={"center"} color={"black"}>
                                         <a className={"link-button"}
-                                           href={"https://client.davinci.dev.cere.network/?event=test_exhibition_dont_delete_live&redirectUrl=" + encodeURIComponent("http://localhost:3000/?off=true&type=TRUSTED_3RD_PARTY&externalUserId=" + applicantIdGlobal + "&token=1234567890&email=" + emailGlobal)}
+                                           href={"https://client.davinci.dev.cere.network/?event=test_exhibition_dont_delete_live&redirectUrl=" + encodeURIComponent("https://integration.dev.cere.io/?off=true&type=TRUSTED_3RD_PARTY&externalUserId=" + applicantIdGlobal + "&token=1234567890&email=" + emailGlobal)}
                                         >Buy</a>
                                     </div>
                                 </div>
