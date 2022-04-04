@@ -15,6 +15,8 @@ import {Link} from 'react-router-dom';
 
 const applicationId = '2095';
 const userId = 'REPLACE_WITH_YOUR_USER_ID';
+var emailGlobal;
+var applicantIdGlobal;
 let sdk;
 const EVENT = 'HOME_PAGE_LIVE_ONE_ENTERED';
 const Header = () => {
@@ -77,7 +79,7 @@ const Header = () => {
     };
     const [show, setShow] = useState(false)
     const [showNft, setShowNft] = useState(false)
-    const [showUserCreds, setShowUserCreds] = useState(false)
+    const [showUserCreds, setShowUserCreds] = useState(true)
 
     function useInput({type /*...*/}) {
         const [value, setValue] = useState("");
@@ -132,10 +134,28 @@ const Header = () => {
                 setShowNft(true);
             }
         }, 700);
+
+        if (window.localStorage.getItem("email")) {
+            emailGlobal = window.localStorage.getItem("email");
+            applicantIdGlobal = window.localStorage.getItem("applicantId")
+            setShowUserCreds(false);
+        }
+
     }, []);
 
     function hide() {
         setShow(false);
+    }
+
+    function applyCreds() {
+        window.localStorage.setItem("email", email);
+        emailGlobal = email;
+        console.log("Email is set to: " + email);
+        window.localStorage.setItem("applicantId", applicantId);
+        applicantIdGlobal = applicantId;
+        console.log("ApplicantId is set to: " + applicantId);
+        setShowUserCreds(false);
+        window.location.reload(true);
     }
 
     function hideNft() {
@@ -155,7 +175,7 @@ const Header = () => {
         sdk.sendEvent(EVENT, {});
     }
 
-    const [password, passwordInput] = useInput({type: "text"});
+    const [applicantId, applicantIdInput] = useInput({type: "text"});
     const [email, emailInput] = useInput({type: "text"});
     return (
         <div className='header section__padding'>
@@ -171,7 +191,7 @@ const Header = () => {
             )
             }
 
-            {showNft && (
+            {showNft && !showUserCreds && (
                 <div className="modal">
                     <div className="modal-content1">
                         <span className="close-button" onClick={hideNft}>&times;</span>
@@ -194,9 +214,8 @@ const Header = () => {
                                     </div>
                                     <p></p>
                                     <div align={"center"} color={"black"}>
-                                        {/*<button tabIndex="0" type="button">Buy</button>*/}
                                         <a className={"link-button"}
-                                           href={"https://client.davinci.dev.cere.network/?event=test_exhibition_dont_delete_live&redirectUrl=" + encodeURIComponent("http://localhost:3000/?off=true&type=TRUSTED_3RD_PARTY&externalUserId=129&token=1234567890&email=oleg.bogatyrev+43@cere.io")}
+                                           href={"https://client.davinci.dev.cere.network/?event=test_exhibition_dont_delete_live&redirectUrl=" + encodeURIComponent("http://localhost:3000/?off=true&type=TRUSTED_3RD_PARTY&externalUserId=" + applicantIdGlobal + "&token=1234567890&email=" + emailGlobal)}
                                         >Buy</a>
                                     </div>
                                 </div>
@@ -213,9 +232,9 @@ const Header = () => {
                         <h1>Connection details</h1>
                         <div>
                             <span>{emailInput}&nbsp;Email</span>
-                            <span>{passwordInput}&nbsp;Password</span>
+                            <span>{applicantIdInput}&nbsp;Applicant Id</span>
                             <div align={"center"} color={"black"}>
-                                <button type="button">Apply</button>
+                                <button type="button" onClick={applyCreds}>Apply</button>
                             </div>
                         </div>
                     </div>

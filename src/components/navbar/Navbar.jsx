@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './navbar.css'
 import {RiCloseLine, RiMenu3Line} from 'react-icons/ri';
 import logo from '../../assets/logo.png'
@@ -11,9 +11,11 @@ const Menu = () => (
 
     </>
 )
+var email;
+var applicant;
 
 const Navbar = () => {
-    // const containerForInAppMessages = useRef();
+
     const [toggleMenu, setToggleMenu] = useState(false)
     const [user, setUser] = useState(false)
 
@@ -23,21 +25,20 @@ const Navbar = () => {
     const handleLogin = () => {
         setUser(true);
     }
+    useEffect(() => {
+        if (window.localStorage.getItem("email")) {
+            email = window.localStorage.getItem("email");
+            applicant = window.localStorage.getItem("applicantId")
+            setUser(true);
+        }
+    }, []);
 
-    // const actionClicked = async (e) => {
-    //     e.preventDefault();
-    //     var DYNAMIC_EVENT = 'DYNAMIC_EVENT';
-    //     // this.setState({show: true});
-    //     debugger;
-    //     setShow(true);
-    //     console.log("Event has been sent " + DYNAMIC_EVENT);
-    //     sdk.sendEvent(DYNAMIC_EVENT);
-    //     // sdk.onEngagement(template => {
-    //     //     debugger;
-    //     //     // var popup = document.getElementById("myPopup");
-    //     //     // popup.classList.toggle("show");
-    //     // });
-    // }
+    function reset() {
+        window.localStorage.removeItem("email");
+        window.localStorage.removeItem("applicantId")
+        setUser(false);
+        window.location.reload(true);
+    }
 
     return (
         <div className='navbar'>
@@ -59,19 +60,15 @@ const Navbar = () => {
             <div className="navbar-sign">
                 {user ? (
                     <>
-                        <Link to="/create">
-                            <button type='button' className='primary-btn'>Create</button>
-                        </Link>
-                        <button type='button' className='secondary-btn'>Connect</button>
+                        <button type='button' className='primary-btn'
+                                onClick={reset}>Reset {email}/{applicant}</button>
                     </>
                 ) : (
                     <>
-                        <Link to="/login">
-                            <button type='button' className='primary-btn' onClick={handleLogin}>Sign In</button>
-                        </Link>
-                        <Link to="#">
-                            <button type='button' className='secondary-btn'>Log In</button>
-                        </Link>
+                        {/*<Link to="/login">*/}
+                        {/*    <button type='button' className='primary-btn' onClick={handleLogin}>Sign In</button>*/}
+                        {/*</Link>*/}
+
                     </>
                 )}
 
