@@ -12,8 +12,6 @@ import seller6 from '../../assets/seller6.jpg'
 import verify from '../../assets/verify.png'
 import coin from '../../assets/coin.png'
 import {Link} from 'react-router-dom';
-import {cereWebSDK} from "@cere/sdk-js/dist/web";
-
 
 const applicationId = '2095';
 const userId = 'REPLACE_WITH_YOUR_USER_ID';
@@ -88,34 +86,51 @@ const Header = () => {
     }
 
     useEffect(() => {
-
         setTimeout(() => {
-
             const query = new URLSearchParams(window.location.search);
             if (query.get('off')) {
                 let type = query.get('type');//?'TRUSTED_3RD_PARTY';
                 let externalUserId = query.get('externalUserId');
                 let token = query.get('token');
-
-
-                sdk = initSdk(externalUserId, type, token);
-
-                sdk.onEngagement((template) => {
-                    console.log("Engagement", {template});
-                    setShow(true)
+                const script = document.createElement('script');
+                script.src = "https://sdk.dev.cere.io/v4.2.0/web.js";
+                script.async = true;
+                script.addEventListener('load', (event) => {
+                    try {
+                        sdk = window.CereSDK.web.cereWebSDK(applicationId, userId, {
+                            // token: process.env.REACT_APP_API_KEY,
+                            // container: containerForInAppMessages.current,
+                            authMethod: {
+                                type: type,
+                                externalUserId: externalUserId,
+                                token: token
+                            },
+                            deployment: 'dev'
+                        });
+                    } catch {
+                        console.log('SDK initialisation failed');
+                    }
+                    sdk.onEngagement((template) => {
+                        console.log("Engagement", {template});
+                        setShow(true)
+                        setTimeout(() => {
+                            document.getElementById("contentDiv").innerHTML = template
+                        }, 100);
+                    });
                     setTimeout(() => {
-                        document.getElementById("contentDiv").innerHTML = template
-                    }, 100);
-                });
+                        console.log("Event has been sent " + EVENT);
+                        sdk.sendEvent(EVENT, {});
+                    });
 
+                });
+                document.head.appendChild(script)
+                return () => {
+                    document.body.removeChild(script);
+                }
                 // setShowUserCreds(true)
             } else {
                 setShowNft(true);
             }
-            setTimeout(() => {
-                console.log("Event has been sent " + EVENT);
-                sdk.sendEvent(EVENT, {});
-            });
         }, 700);
     }, []);
 
@@ -129,62 +144,6 @@ const Header = () => {
 
     function hideUserCreds() {
         setShowUserCreds(false);
-    }
-
-    function initSdk(externalUserId, type, token) {
-        return cereWebSDK(applicationId, userId, {
-            // token: process.env.REACT_APP_API_KEY,
-            // container: containerForInAppMessages.current,
-            authMethod: {
-                type: type,
-                externalUserId: externalUserId,
-                token: token
-            },
-            deployment: 'dev'
-        });
-    }
-
-    function applyPassword() {
-
-        console.log("Password: " + password)
-        try {
-            sdk = cereWebSDK(applicationId, userId,
-                {
-                    authMethod: {
-                        type: 'EMAIL',
-                        "email": email,
-                        "password": password,
-                    }
-                }
-            );
-            console.log('SDK initialisation completed')
-        } catch {
-            console.log('SDK initialisation failed');
-        }
-
-        sdk.onEngagement((template) => {
-            console.log("Engagement", {template});
-            setShow(true)
-            setTimeout(() => {
-                document.getElementById("contentDiv").innerHTML = template
-            }, 100);
-        });
-
-        //     // this.setState({show: true});
-        //     debugger;
-        //     setShow(true);
-
-        // console.log(window.CereSDK.web)
-
-
-        hideUserCreds();
-
-        setTimeout(() => {
-
-            console.log("Event has been sent " + EVENT);
-            sdk.sendEvent(EVENT, {});
-            sdk.sendEvent(EVENT, {});
-        }, 5000);
     }
 
     function clicked() {
@@ -256,7 +215,7 @@ const Header = () => {
                             <span>{emailInput}&nbsp;Email</span>
                             <span>{passwordInput}&nbsp;Password</span>
                             <div align={"center"} color={"black"}>
-                                <button type="button" onClick={applyPassword}>Apply</button>
+                                <button type="button">Apply</button>
                             </div>
                         </div>
                     </div>
