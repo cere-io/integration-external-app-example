@@ -45,7 +45,8 @@ function initCereSdk(type, externalUserId, token) {
             type: type,
             externalUserId: externalUserId,
             token: token
-        }
+        },
+        deployment: 'dev'
     });
 }
 
