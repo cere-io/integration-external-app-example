@@ -12,13 +12,9 @@ import seller6 from '../../assets/seller6.jpg'
 import verify from '../../assets/verify.png'
 import coin from '../../assets/coin.png'
 import {Link} from 'react-router-dom';
+import {getNftUrl, initSdk} from "../../service/cere-integration-service";
+import {getApplicantId, getEmail, setApplicantId, setEmail} from "../../service/local-storage-service";
 
-const applicationId = '2095';
-const userId = 'REPLACE_WITH_YOUR_USER_ID';
-var emailGlobal;
-var applicantIdGlobal;
-let sdk;
-const EVENT = 'HOME_PAGE_LIVE_ONE_ENTERED';
 const Header = () => {
     var settings = {
         dots: false,
@@ -87,60 +83,43 @@ const Header = () => {
         return [value, input];
     }
 
-    useEffect(() => {
+    /**************************************************************START_CERE BLOCK**********************************************************************/
+
+    /**
+     * Action to be triggered after engagement received.
+     */
+    function onEngagementAction(template) {
+        setShow(true)
         setTimeout(() => {
-            const query = new URLSearchParams(window.location.search);
-            if (query.get('off')) {
-                let type = query.get('type');//?'TRUSTED_3RD_PARTY';
-                let externalUserId = query.get('externalUserId');
-                let token = query.get('token');
-                const script = document.createElement('script');
-                script.src = "https://sdk.dev.cere.io/v4.2.0/web.js";
-                script.async = true;
-                script.addEventListener('load', (event) => {
-                    try {
-                        sdk = window.CereSDK.web.cereWebSDK(applicationId, userId, {
-                            // token: process.env.REACT_APP_API_KEY,
-                            // container: containerForInAppMessages.current,
-                            authMethod: {
-                                type: type,
-                                externalUserId: externalUserId,
-                                token: token
-                            },
-                            deployment: 'dev'
-                        });
-                    } catch {
-                        console.log('SDK initialisation failed');
-                    }
-                    sdk.onEngagement((template) => {
-                        console.log("Engagement", {template});
-                        setShow(true)
-                        setTimeout(() => {
-                            document.getElementById("contentDiv").innerHTML = template
-                        }, 100);
-                    });
-                    setTimeout(() => {
-                        console.log("Event has been sent " + EVENT);
-                        sdk.sendEvent(EVENT, {});
-                    });
+            document.getElementById("contentDiv").innerHTML = template
+        }, 100);
+    }
 
-                });
-                document.head.appendChild(script)
-                return () => {
-                    document.body.removeChild(script);
-                }
-                // setShowUserCreds(true)
-            } else {
-                setShowNft(true);
-            }
-        }, 700);
+    useEffect(() => {
+        const query = new URLSearchParams(window.location.search);
+        if (query.get('off')) {
+            let externalUserId = query.get('externalUserId');
+            let token = query.get('token');
 
-        if (window.localStorage.getItem("email")) {
-            emailGlobal = window.localStorage.getItem("email");
-            applicantIdGlobal = window.localStorage.getItem("applicantId")
-            setShowUserCreds(false);
+            /**
+             * Init Cere sdk if there is off in request.
+             * Just a marker flag not to initialise it all the time.
+             */
+            initSdk(externalUserId, token, onEngagementAction)
+
+        } else {
+            setShowNft(true);
         }
 
+        if (getEmail()) {
+            setShowUserCreds(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (getEmail()) {
+            setShowUserCreds(false);
+        }
     }, []);
 
     function hide() {
@@ -148,13 +127,11 @@ const Header = () => {
     }
 
     function applyCreds() {
-        window.localStorage.setItem("email", email);
-        emailGlobal = email;
-        console.log("Email is set to: " + email);
-        window.localStorage.setItem("applicantId", applicantId);
-        applicantIdGlobal = applicantId;
-        console.log("ApplicantId is set to: " + applicantId);
+        setEmail(email);
+        setApplicantId(applicantId);
+
         setShowUserCreds(false);
+
         window.location.reload(true);
     }
 
@@ -166,14 +143,6 @@ const Header = () => {
         setShowUserCreds(false);
     }
 
-    function clicked() {
-        //     // this.setState({show: true});
-        //     debugger;
-        //     setShow(true);
-        console.log("Event has been sent " + EVENT);
-        // console.log(window.CereSDK.web)
-        sdk.sendEvent(EVENT, {});
-    }
 
     const [applicantId, applicantIdInput] = useInput({type: "text"});
     const [email, emailInput] = useInput({type: "text"});
@@ -215,7 +184,7 @@ const Header = () => {
                                     <p></p>
                                     <div align={"center"} color={"black"}>
                                         <a className={"link-button"}
-                                           href={"https://client.davinci.dev.cere.network/?event=test_exhibition_dont_delete_live&redirectUrl=" + encodeURIComponent("https://integration.dev.cere.io/?off=true&type=TRUSTED_3RD_PARTY&externalUserId=" + applicantIdGlobal + "&token=1234567890&email=" + encodeURIComponent(emailGlobal))}
+                                           href={getNftUrl(getApplicantId(), getEmail())}
                                         >Buy</a>
                                     </div>
                                 </div>
@@ -240,9 +209,11 @@ const Header = () => {
                     </div>
                 </div>)}
 
+            {/**************************************************************END_CERE_BLOCK**********************************************************************/}
+
 
             <div className="header-content">
-                <div onClick={clicked}>
+                <div>
                     <h1>Discover, collect, and sell extraordinary NFTs</h1>
                     <img className='shake-vertical' src={coin} alt=""/>
                 </div>
