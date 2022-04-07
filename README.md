@@ -18,7 +18,7 @@ Demonstration of integration with Davinci.
 13. Popup is shown to the user
 
 
-# Usefull links
+# Useful links
 - Cere skd usage is located in <code>cere-integration-service.jsx</code>
 - Local storage operations are placed in <code>local-storage-service.jsx</code>
 - UI actions processing are happening in <code>Header.jsx</code> Block starts from **START_CERE BLOCK** and ends with **END_CERE_BLOCK**
