@@ -54,48 +54,6 @@ function initCereSdk(type, externalUserId, token) {
     });
 }
 
-export function initSdk(externalUserId, token, onEngagementFunction) {
-    setTimeout(() => {
-
-        const script = createScriptElement();
-
-        let sdk;
-
-        script.addEventListener('load', (event) => {
-            try {
-                /**
-                 * Init SDK with parameters provided.
-                 */
-                sdk = initCereSdk(type, externalUserId, token);
-            } catch (error) {
-                console.log('SDK initialisation failed: ' + error);
-            }
-
-            /**
-             * Specify the action after engagement data received.
-             * Please note: this action happens asynchronously.
-             */
-            sdk.onEngagement((template) => {
-                onEngagementFunction(template);
-            });
-
-            setTimeout(() => {
-                /**
-                 * Send event to Cere system.
-                 */
-                sdk.sendEvent(EVENT, {});
-            });
-
-        });
-
-        document.head.appendChild(script)
-
-        return () => {
-            document.body.removeChild(script);
-        }
-    }, 700);
-}
-
 export async function sendEvent(sdk, eventName, keyValuePair) {
     /**
      * Send event to Cere system for QR.
@@ -115,7 +73,7 @@ export async function sendEvent(sdk, eventName, keyValuePair) {
     });
 }
 
-export function initSdkQr(externalUserId, token, onEngagementFunction, eventName) {
+export function initSdkQr(externalUserId, token, onEngagementFunction, onKeyPairFunction) {
     setTimeout(() => {
 
         const script = createScriptElement();
@@ -131,8 +89,8 @@ export function initSdkQr(externalUserId, token, onEngagementFunction, eventName
                 SDK.it = sdk;
 
                 sdk.onGetUserKeypair((keyPair) => {
-                    console.log("On pair received");
                     SDK.keyPair = keyPair;
+                    onKeyPairFunction(keyPair);
                 });
 
             } catch (error) {
@@ -146,19 +104,6 @@ export function initSdkQr(externalUserId, token, onEngagementFunction, eventName
             sdk.onEngagement((template) => {
                 onEngagementFunction(template);
             });
-            //
-            // setTimeout(() => {
-            //     /**
-            //      * Send event to Cere system for QR.
-            //      */
-            //     let timestamp = Number(new Date())
-            //     let sign = signMessage(timestamp, privateKey)
-            //     sdk.sendEvent(eventName, {
-            //         userId: externalUserId,
-            //         timestamp: timestamp,
-            //         signature: sign
-            //     });
-            // }, 4000);
         });
 
         document.head.appendChild(script)

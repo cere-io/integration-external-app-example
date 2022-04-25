@@ -75,6 +75,7 @@ const Header = () => {
     };
     const [show, setShow] = useState(false)
     const [showUserCreds, setShowUserCreds] = useState(true)
+    const [userId, setUserId] = useState(null);
 
     function useInput({type /*...*/}) {
         const [value, setValue] = useState("");
@@ -83,8 +84,6 @@ const Header = () => {
     }
 
     /**************************************************************START_CERE BLOCK**********************************************************************/
-
-    // userId not checker but user
 
     /**
      * Action to be triggered after engagement received.
@@ -103,6 +102,15 @@ const Header = () => {
         }, 100);
     }
 
+
+    /**
+     * Action to be triggered after engagement received.
+     */
+    function onUserKeyPair(keyPair) {
+        console.log(keyPair);
+        setUserId(keyPair["publicKey"]);
+    }
+
     useEffect(() => {
         let applicantId = getApplicantId();
         if (applicantId) {
@@ -110,7 +118,7 @@ const Header = () => {
              * Init Cere sdk if there is off in request.
              * Just a marker flag not to initialise it all the time.
              */
-            initSdkQr(applicantId, '1234567890', onEngagementAction, 'LIVE_ONE_LIST_OF_NFTS')
+            initSdkQr(applicantId, '1234567890', onEngagementAction, onUserKeyPair)
 
         }
 
@@ -163,40 +171,6 @@ const Header = () => {
             )
             }
 
-            {/*{false && (*/}
-            {/*    <div className="modal">*/}
-            {/*        <div className="modal-content1">*/}
-            {/*            <span className="close-button" onClick={hideNft}>&times;</span>*/}
-            {/*            <h2>TEST EXHIBITION DON'T DELETE (LIVE)</h2>*/}
-            {/*            <br/>*/}
-            {/*            <div>*/}
-            {/*                <div>*/}
-            {/*                    <img*/}
-            {/*                        src={"https://assets.cms.freeport.dev.cere.network/small_166747_priroda_voda_oblako_gora_gidroresursy_500x_477a41a47f.jpg"}*/}
-            {/*                        className={"full-width"}/>*/}
-            {/*                </div>*/}
-            {/*                <br/>*/}
-            {/*                <div>*/}
-            {/*                    <div>*/}
-            {/*                        <p>TEST TEST*/}
-            {/*                            TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST</p></div>*/}
-            {/*                    <div>*/}
-            {/*                        <div>*/}
-            {/*                            <h3>$89</h3>*/}
-            {/*                        </div>*/}
-            {/*                        <p></p>*/}
-            {/*                        <div align={"center"} color={"black"}>*/}
-            {/*                            <a className={"link-button"}*/}
-            {/*                               href={getNftUrl(getApplicantId(), getEmail())}*/}
-            {/*                            >Buy</a>*/}
-            {/*                        </div>*/}
-            {/*                    </div>*/}
-            {/*                </div>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*)}*/}
-
             {showUserCreds && (
                 <div className="modal">
                     <div className="modal-content1">
@@ -218,6 +192,7 @@ const Header = () => {
             {getApplicantId() && <div className="header-content">
                 <div onClick={discoverDivClicked}>
                     <h1>Check my special event nfts</h1>
+                    <h3 style={{color: "white"}}>{userId}</h3>
                     <img className='shake-vertical' src={coin} alt=""/>
                 </div>
             </div>}
