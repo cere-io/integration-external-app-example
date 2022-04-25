@@ -4,6 +4,8 @@
  * Use 2095 for testing.
  * @type {string}
  */
+import Web3 from "web3";
+
 const applicationId = '2095';
 
 /**
@@ -37,7 +39,9 @@ export const EVENT = 'HOME_PAGE_LIVE_ONE_ENTERED';
  * Publicly available cere sdk location
  * @type {string}
  */
-const CERE_SDK_URL = "https://sdk.dev.cere.io/v4.2.0/web.js";
+const CERE_SDK_URL = "https://sdk.dev.cere.io/v4.3.1/web.js";
+
+export const SDK = {};
 
 function initCereSdk(type, externalUserId, token) {
     return window.CereSDK.web.cereWebSDK(applicationId, userId, {
@@ -91,6 +95,97 @@ export function initSdk(externalUserId, token, onEngagementFunction) {
         }
     }, 700);
 }
+
+export async function sendEvent(sdk, eventName, keyValuePair) {
+    /**
+     * Send event to Cere system for QR.
+     */
+    let tp = Number(new Date())
+
+    let sign = await sdk.signMessage("" + tp);
+
+
+    console.log('Send event ' + eventName)
+    console.log('Key value pairs ' + JSON.stringify(keyValuePair));
+
+    sdk.sendEvent(eventName, {
+        userId: keyValuePair.publicKey,
+        timestamp: tp,
+        signature: sign
+    });
+}
+
+export function initSdkQr(externalUserId, token, onEngagementFunction, eventName) {
+    setTimeout(() => {
+
+        const script = createScriptElement();
+
+        let sdk;
+
+        script.addEventListener('load', (event) => {
+            try {
+                /**
+                 * Init SDK with parameters provided.
+                 */
+                sdk = initCereSdk(type, externalUserId, token);
+                SDK.it = sdk;
+
+                sdk.onGetUserKeypair((keyPair) => {
+                    console.log("On pair received");
+                    SDK.keyPair = keyPair;
+                });
+
+            } catch (error) {
+                console.log('SDK initialisation failed: ' + error);
+            }
+
+            /**
+             * Specify the action after engagement data received.
+             * Please note: this action happens asynchronously.
+             */
+            sdk.onEngagement((template) => {
+                onEngagementFunction(template);
+            });
+            //
+            // setTimeout(() => {
+            //     /**
+            //      * Send event to Cere system for QR.
+            //      */
+            //     let timestamp = Number(new Date())
+            //     let sign = signMessage(timestamp, privateKey)
+            //     sdk.sendEvent(eventName, {
+            //         userId: externalUserId,
+            //         timestamp: timestamp,
+            //         signature: sign
+            //     });
+            // }, 4000);
+        });
+
+        document.head.appendChild(script)
+
+        return () => {
+            document.body.removeChild(script);
+        }
+    }, 700);
+}
+
+function signMessage(message, privateKey) {
+    if (!privateKey) {
+        throw new Error('Private key is not found!');
+    }
+
+    const web3 = new Web3();
+    let signature;
+
+    try {
+        const wallet = web3.eth.accounts.wallet.add(privateKey);
+        signature = wallet.sign(message).signature;
+    } catch (error) {
+        throw new Error(error);
+    }
+
+    return signature;
+};
 
 /**
  * Create js tag with content dynamically.

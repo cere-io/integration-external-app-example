@@ -24,12 +24,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgb(62, 67, 80);
+  background-color: white;
+          /*rgb(62, 67, 80);*/
   padding: 1rem 1.5rem;
   width: 24rem;
-  color: white;
+  color: black;
+          /*white;*/
   border-radius: 0.5rem;
-  border-color: white;
+  border-color: black;
+          /*white;*/
 }
 
 .close-button {
