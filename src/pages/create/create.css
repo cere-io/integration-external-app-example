@@ -1,4 +1,4 @@
-.create{
+.create {
   display: flex;
   font-family: var(--font-family);
   color: white;
@@ -6,7 +6,7 @@
   align-items: center;
   width: 100%;
 }
-.create-container h1{
+.create-container h1 {
   font-weight: 600;
   font-size: 28px;
   line-height: 42px;
@@ -14,15 +14,15 @@
 }
 .create-container .upload-file {
   font-weight: 600;
-font-size: 28px;
-line-height: 42px;
-margin-bottom: 20px;
+  font-size: 28px;
+  line-height: 42px;
+  margin-bottom: 20px;
 }
-.upload-img-show{
-  background: #2D2E36;
+.upload-img-show {
+  background: #2d2e36;
   /* White */
   padding: 30px 40px;
-  border: 1px dashed #FFFFFF;
+  border: 1px dashed #ffffff;
   box-sizing: border-box;
   border-radius: 10px;
   display: flex;
@@ -31,36 +31,36 @@ margin-bottom: 20px;
   justify-content: center;
   margin-bottom: 50px;
 }
-.upload-img-show h3{
+.upload-img-show h3 {
   font-weight: 600;
-font-size: 20px;
-line-height: 30px;
-margin-bottom: 20px;
-}
-.upload-img-show img{
+  font-size: 20px;
+  line-height: 30px;
   margin-bottom: 20px;
 }
-.upload-img-show p{
-  font-weight: 600;
-font-size: 14px;
-line-height: 21px;
+.upload-img-show img {
+  margin-bottom: 20px;
 }
-.upload-img-show span{
+.upload-img-show p {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+}
+.upload-img-show span {
   font-weight: normal;
 }
-.formGroup{
+.formGroup {
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
 }
-.formGroup label{
+.formGroup label {
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
   margin-bottom: 20px;
 }
-.formGroup input{
-  background: #2D2E36;
+.formGroup input {
+  background: #2d2e36;
   border-radius: 10px;
   padding: 1rem 1.5rem;
   outline: none;
@@ -71,8 +71,8 @@ line-height: 21px;
   width: 100%;
 }
 
-.formGroup textarea{
-  background: #2D2E36;
+.formGroup textarea {
+  background: #2d2e36;
   border-radius: 10px;
   padding: 1rem 1.5rem;
   outline: none;
@@ -81,8 +81,8 @@ line-height: 21px;
   font-size: 16px;
   line-height: 26px;
 }
-.formGroup select{
-  background: #2D2E36;
+.formGroup select {
+  background: #2d2e36;
   border-radius: 10px;
   padding: 1rem 1.5rem;
   outline: none;
@@ -92,7 +92,7 @@ line-height: 21px;
   line-height: 26px;
   text-overflow: ellipsis;
 }
-.writeForm button{
+.writeForm button {
   float: right;
   background: var(--primary-btn);
   border: none;
@@ -103,7 +103,7 @@ line-height: 21px;
   font-size: 14px;
   line-height: 21px;
 }
-.twoForm{
+.twoForm {
   display: flex;
   justify-content: space-between;
 }
@@ -141,14 +141,13 @@ line-height: 21px;
   outline: 0;
 }
 .custom-file-input:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
-@media screen and (max-width: 550px){
-  .create{
-    padding:2rem 1.5rem !important;
-
+@media screen and (max-width: 550px) {
+  .create {
+    padding: 2rem 1.5rem !important;
   }
-  .create-container h1{
+  .create-container h1 {
     display: none;
     margin-bottom: 20px;
   }

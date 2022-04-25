@@ -1,15 +1,14 @@
-.item{
+.item {
   display: flex;
   padding: 0 6rem;
   font-family: var(--font-family);
 }
-.item-image{
+.item-image {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   border-right: 1px solid rgba(165, 165, 165, 0.1);
-
 }
 .item-image img {
   width: 100%;
@@ -17,8 +16,8 @@
   border-radius: 70px;
   padding: 50px;
 }
-.item-content{
-  flex:1;
+.item-content {
+  flex: 1;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -27,41 +26,41 @@
   position: relative;
 }
 
-.item-content-title h1{
+.item-content-title h1 {
   font-family: var(--font-family);
   font-weight: 600;
   font-size: 28px;
   line-height: 42px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
-.item-content-title p{
+.item-content-title p {
   font-family: var(--font-family);
   font-weight: normal;
   font-size: 14px;
   line-height: 21px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
-.item-content-title span{
+.item-content-title span {
   font-weight: 600;
 }
-.item-content-creator{
+.item-content-creator {
   margin-top: 30px;
 }
-.item-content-creator p{
+.item-content-creator p {
   font-size: 12px;
   line-height: 18px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
-.item-content-creator div{
+.item-content-creator div {
   display: flex;
   align-items: center;
   margin-top: 10px;
 }
-.item-content-creator div:last-child p{
+.item-content-creator div:last-child p {
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .item-content-creator img {
   border-radius: 50%;
@@ -69,19 +68,19 @@
   width: 50px;
   height: 50px;
 }
-.item-content-detail{
+.item-content-detail {
   margin-top: 30px;
   margin-bottom: 30px;
   border-top: 1px solid rgba(165, 165, 165, 0.1);
   padding-top: 20px;
 }
-.item-content-detail p{
+.item-content-detail p {
   font-size: 16px;
   line-height: 26px;
-  color: #FFFFFF;
+  color: #ffffff;
   width: 500px;
 }
-.item-content-buy .primary-btn{
+.item-content-buy .primary-btn {
   background: var(--primary-btn);
   border-radius: 10px;
   border: none;
@@ -92,22 +91,22 @@
   color: #fff;
   margin-right: 20px;
 }
-.item-content-buy .secondary-btn{
+.item-content-buy .secondary-btn {
   background: transparent;
   border-radius: 10px;
   border: 1px solid var(--primary-color);
-  padding: 0.70rem 3rem;
+  padding: 0.7rem 3rem;
   font-size: 14px;
   line-height: 21px;
   font-weight: 600;
   color: var(--primary-color);
 }
-.item-content-action{
+.item-content-action {
   display: flex;
   position: absolute;
   right: 0;
 }
-.item-content-action p{
+.item-content-action p {
   cursor: pointer;
   font-size: 18px;
   color: white;
@@ -117,81 +116,77 @@
   padding: 5px 5px 0px 5px;
 }
 @media screen and (max-width: 1050px) {
-  .item{
+  .item {
     flex-direction: column;
   }
-  .item-content{
+  .item-content {
     margin: 0 0 3rem;
   }
-  .item-image{
+  .item-image {
     border-right: unset;
   }
-  .item-content-detail p{
+  .item-content-detail p {
     width: 100%;
   }
 }
 
 @media screen and (max-width: 650px) {
-  .item-content h1{
+  .item-content h1 {
     font-size: 28px;
-  line-height: 42px;
+    line-height: 42px;
   }
-  .item-content p{
+  .item-content p {
     font-size: 16px;
     line-height: 24px;
   }
-  .item-content__people{
+  .item-content__people {
     flex-direction: column;
   }
-  .item-content__people p{
+  .item-content__people p {
     margin: 0;
   }
   .item-content__input input,
-  .item-content__input button{
+  .item-content__input button {
     font-size: 16px;
     line-height: 24px;
   }
-  .item-content-buy .primary-btn{
+  .item-content-buy .primary-btn {
     padding: 0.75rem 20px;
-
   }
-  .item-content-buy .secondary-btn{
+  .item-content-buy .secondary-btn {
     padding: 0.75rem 33px;
   }
 }
-@media screen and (max-width: 490px){
-  .item-content h1{
+@media screen and (max-width: 490px) {
+  .item-content h1 {
     font-size: 28px;
-  line-height: 42px;
+    line-height: 42px;
   }
-  .item-content p{
+  .item-content p {
     font-size: 14px;
     line-height: 26px;
   }
   .item-content__input input,
-  .item-content__input button{
+  .item-content__input button {
     font-size: 12px;
     line-height: 16px;
   }
-  .item{
-    padding-inline:1rem !important ;
+  .item {
+    padding-inline: 1rem !important ;
     padding-top: 1rem !important;
   }
-  .item-image img{
+  .item-image img {
     padding: 0;
     border-radius: 20px;
     margin-bottom: 25px;
   }
-  .item-content-buy .primary-btn{
+  .item-content-buy .primary-btn {
     margin-right: 10px;
-
   }
-  .item-content-action{
+  .item-content-action {
     top: 15%;
   }
-  .item-content-action p{
+  .item-content-action p {
     margin-inline: 5px;
-    
   }
- 
 }

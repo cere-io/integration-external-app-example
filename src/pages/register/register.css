@@ -1,4 +1,4 @@
-.register{
+.register {
   display: flex;
   font-family: var(--font-family);
   color: white;
@@ -7,12 +7,12 @@
   width: 100%;
 }
 .register-container {
-  background: #2A2D3A;
+  background: #2a2d3a;
   border-radius: 20px;
   padding: 2rem;
   min-width: 30%;
 }
-.register-container h1{
+.register-container h1 {
   font-weight: 600;
   font-size: 48px;
   line-height: 42px;
@@ -22,19 +22,19 @@
   margin-top: 20px;
 }
 
-.register-formGroup{
+.register-formGroup {
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
 }
-.register-formGroup label{
+.register-formGroup label {
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
   margin-bottom: 15px;
 }
-.register-formGroup input{
-  background: #1B1A21;
+.register-formGroup input {
+  background: #1b1a21;
   border-radius: 10px;
   padding: 1rem 1.5rem;
   outline: none;
@@ -44,8 +44,8 @@
   line-height: 26px;
 }
 
-.register-formGroup textarea{
-  background: #2D2E36;
+.register-formGroup textarea {
+  background: #2d2e36;
   border-radius: 10px;
   padding: 1rem 1.5rem;
   outline: none;
@@ -54,8 +54,8 @@
   font-size: 16px;
   line-height: 26px;
 }
-.register-formGroup select{
-  background: #2D2E36;
+.register-formGroup select {
+  background: #2d2e36;
   border-radius: 10px;
   padding: 1rem 1.5rem;
   outline: none;
@@ -65,12 +65,12 @@
   line-height: 26px;
   text-overflow: ellipsis;
 }
-.register-button{
+.register-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.register-writeButton{
+.register-writeButton {
   /* float: right; */
   background: var(--primary-btn);
   border: none;
@@ -81,7 +81,7 @@
   font-size: 14px;
   line-height: 21px;
 }
-.reg-login-writeButton{
+.reg-login-writeButton {
   background-color: transparent;
   border: 1px solid var(--primary-color);
   border-radius: 10px;
@@ -91,22 +91,20 @@
   font-size: 14px;
   line-height: 21px;
 }
-@media screen and (max-width: 550px){
-  .register{
-    padding:2rem 1.5rem !important;
-
+@media screen and (max-width: 550px) {
+  .register {
+    padding: 2rem 1.5rem !important;
   }
-  .register-container{
+  .register-container {
     padding: 1.5rem 1rem;
   }
-  .register-container h1{
+  .register-container h1 {
     /* display: none; */
-      font-size: 36px;
-      margin-top: 0;
+    font-size: 36px;
+    margin-top: 0;
   }
-  .register-formGroup label{
+  .register-formGroup label {
     font-size: 20px;
     line-height: 30px;
   }
-  
 }

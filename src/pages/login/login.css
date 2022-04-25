@@ -1,4 +1,4 @@
-.login{
+.login {
   display: flex;
   font-family: var(--font-family);
   color: white;
@@ -7,12 +7,12 @@
   width: 100%;
 }
 .login-container {
-  background: #2A2D3A;
+  background: #2a2d3a;
   border-radius: 20px;
   padding: 2rem;
   min-width: 30%;
 }
-.login-container h1{
+.login-container h1 {
   font-weight: 600;
   font-size: 48px;
   line-height: 42px;
@@ -22,19 +22,19 @@
   margin-top: 20px;
 }
 
-.login-formGroup{
+.login-formGroup {
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
 }
-.login-formGroup label{
+.login-formGroup label {
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
   margin-bottom: 20px;
 }
-.login-formGroup input{
-  background: #1B1A21;
+.login-formGroup input {
+  background: #1b1a21;
   border-radius: 10px;
   padding: 1rem 1.5rem;
   outline: none;
@@ -44,8 +44,8 @@
   line-height: 26px;
 }
 
-.login-formGroup textarea{
-  background: #2D2E36;
+.login-formGroup textarea {
+  background: #2d2e36;
   border-radius: 10px;
   padding: 1rem 1.5rem;
   outline: none;
@@ -54,8 +54,8 @@
   font-size: 16px;
   line-height: 26px;
 }
-.login-formGroup select{
-  background: #2D2E36;
+.login-formGroup select {
+  background: #2d2e36;
   border-radius: 10px;
   padding: 1rem 1.5rem;
   outline: none;
@@ -65,12 +65,12 @@
   line-height: 26px;
   text-overflow: ellipsis;
 }
-.login-button{
+.login-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.login-writeButton{
+.login-writeButton {
   /* float: right; */
   background: var(--primary-btn);
   border: none;
@@ -81,7 +81,7 @@
   font-size: 14px;
   line-height: 21px;
 }
-.login-reg-writeButton{
+.login-reg-writeButton {
   background-color: transparent;
   border: 1px solid var(--primary-color);
   border-radius: 10px;
@@ -91,22 +91,20 @@
   font-size: 14px;
   line-height: 21px;
 }
-@media screen and (max-width: 550px){
-  .login{
-    padding:2rem 1.5rem !important;
-
+@media screen and (max-width: 550px) {
+  .login {
+    padding: 2rem 1.5rem !important;
   }
-  .login-container{
+  .login-container {
     padding: 1.5rem 1rem;
   }
-  .login-container h1{
+  .login-container h1 {
     /* display: none; */
-      font-size: 36px;
-      margin-top: 0;
+    font-size: 36px;
+    margin-top: 0;
   }
-  .login-formGroup label{
+  .login-formGroup label {
     font-size: 20px;
     line-height: 30px;
   }
-  
 }
