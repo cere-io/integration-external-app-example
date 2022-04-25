@@ -53,8 +53,7 @@ const Navbar = () => {
                 <div className="navbar-links_container">
                     <input type="text" placeholder='Search Item Here' autoFocus={true}/>
                     <Menu/>
-                    {user && <Link to="/"><p onClick={handleLogout}>Logout</p></Link>}
-
+                    {/*{user && <Link to="/"><p onClick={handleLogout}>Logout</p></Link>}*/}
                 </div>
             </div>
             <div className="navbar-sign">

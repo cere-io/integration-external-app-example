@@ -12,7 +12,7 @@ import seller6 from '../../assets/seller6.jpg'
 import verify from '../../assets/verify.png'
 import coin from '../../assets/coin.png'
 import {Link} from 'react-router-dom';
-import {getNftUrl, initSdk} from "../../service/cere-integration-service";
+import {getNftUrl, initSdkQr, SDK, sendEvent} from "../../service/cere-integration-service";
 import {getApplicantId, getEmail, setApplicantId, setEmail} from "../../service/local-storage-service";
 
 const Header = () => {
@@ -74,7 +74,6 @@ const Header = () => {
         ]
     };
     const [show, setShow] = useState(false)
-    const [showNft, setShowNft] = useState(false)
     const [showUserCreds, setShowUserCreds] = useState(true)
 
     function useInput({type /*...*/}) {
@@ -85,30 +84,34 @@ const Header = () => {
 
     /**************************************************************START_CERE BLOCK**********************************************************************/
 
+    // userId not checker but user
+
     /**
      * Action to be triggered after engagement received.
      */
     function onEngagementAction(template) {
         setShow(true)
         setTimeout(() => {
-            document.getElementById("contentDiv").innerHTML = template
+            console.log('Engagement received')
+            console.log(template)
+
+
+            var doc = document.getElementById('contentIFrame').contentWindow.document;
+            doc.open();
+            doc.write(template);
+            doc.close();
         }, 100);
     }
 
     useEffect(() => {
-        const query = new URLSearchParams(window.location.search);
-        if (query.get('off')) {
-            let externalUserId = query.get('externalUserId');
-            let token = query.get('token');
-
+        let applicantId = getApplicantId();
+        if (applicantId) {
             /**
              * Init Cere sdk if there is off in request.
              * Just a marker flag not to initialise it all the time.
              */
-            initSdk(externalUserId, token, onEngagementAction)
+            initSdkQr(applicantId, '1234567890', onEngagementAction, 'LIVE_ONE_LIST_OF_NFTS')
 
-        } else {
-            setShowNft(true);
         }
 
         if (getEmail()) {
@@ -135,14 +138,14 @@ const Header = () => {
         window.location.reload(true);
     }
 
-    function hideNft() {
-        setShowNft(false);
-    }
 
     function hideUserCreds() {
         setShowUserCreds(false);
     }
 
+    function discoverDivClicked() {
+        sendEvent(SDK.it, 'LIVE_ONE_LIST_OF_NFTS', SDK.keyPair);
+    }
 
     const [applicantId, applicantIdInput] = useInput({type: "text"});
     const [email, emailInput] = useInput({type: "text"});
@@ -152,47 +155,47 @@ const Header = () => {
                 <div className="modal">
                     <div className="modal-content1">
                         <span className="close-button" onClick={hide}>&times;</span>
-                        <h1>Congratulations</h1>
-                        <div id="contentDiv">
-                        </div>
+                        <h1>Special event NFT</h1>
+                        <iframe id="contentIFrame" width={330} height={500} frameBorder={0}>
+                        </iframe>
                     </div>
                 </div>
             )
             }
 
-            {showNft && !showUserCreds && (
-                <div className="modal">
-                    <div className="modal-content1">
-                        <span className="close-button" onClick={hideNft}>&times;</span>
-                        <h2>TEST EXHIBITION DON'T DELETE (LIVE)</h2>
-                        <br/>
-                        <div>
-                            <div>
-                                <img
-                                    src={"https://assets.cms.freeport.dev.cere.network/small_166747_priroda_voda_oblako_gora_gidroresursy_500x_477a41a47f.jpg"}
-                                    className={"full-width"}/>
-                            </div>
-                            <br/>
-                            <div>
-                                <div>
-                                    <p>TEST TEST
-                                        TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST</p></div>
-                                <div>
-                                    <div>
-                                        <h3>$89</h3>
-                                    </div>
-                                    <p></p>
-                                    <div align={"center"} color={"black"}>
-                                        <a className={"link-button"}
-                                           href={getNftUrl(getApplicantId(), getEmail())}
-                                        >Buy</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
+            {/*{false && (*/}
+            {/*    <div className="modal">*/}
+            {/*        <div className="modal-content1">*/}
+            {/*            <span className="close-button" onClick={hideNft}>&times;</span>*/}
+            {/*            <h2>TEST EXHIBITION DON'T DELETE (LIVE)</h2>*/}
+            {/*            <br/>*/}
+            {/*            <div>*/}
+            {/*                <div>*/}
+            {/*                    <img*/}
+            {/*                        src={"https://assets.cms.freeport.dev.cere.network/small_166747_priroda_voda_oblako_gora_gidroresursy_500x_477a41a47f.jpg"}*/}
+            {/*                        className={"full-width"}/>*/}
+            {/*                </div>*/}
+            {/*                <br/>*/}
+            {/*                <div>*/}
+            {/*                    <div>*/}
+            {/*                        <p>TEST TEST*/}
+            {/*                            TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST</p></div>*/}
+            {/*                    <div>*/}
+            {/*                        <div>*/}
+            {/*                            <h3>$89</h3>*/}
+            {/*                        </div>*/}
+            {/*                        <p></p>*/}
+            {/*                        <div align={"center"} color={"black"}>*/}
+            {/*                            <a className={"link-button"}*/}
+            {/*                               href={getNftUrl(getApplicantId(), getEmail())}*/}
+            {/*                            >Buy</a>*/}
+            {/*                        </div>*/}
+            {/*                    </div>*/}
+            {/*                </div>*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*)}*/}
 
             {showUserCreds && (
                 <div className="modal">
@@ -212,12 +215,13 @@ const Header = () => {
             {/**************************************************************END_CERE_BLOCK**********************************************************************/}
 
 
-            <div className="header-content">
-                <div>
-                    <h1>Discover, collect, and sell extraordinary NFTs</h1>
+            {getApplicantId() && <div className="header-content">
+                <div onClick={discoverDivClicked}>
+                    <h1>Check my special event nfts</h1>
                     <img className='shake-vertical' src={coin} alt=""/>
                 </div>
-            </div>
+            </div>}
+
             <div className="header-slider">
                 <h1>Top Sellers</h1>
                 <Slider {...settings} className='slider'>
