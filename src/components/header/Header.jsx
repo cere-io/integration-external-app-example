@@ -12,8 +12,9 @@ import seller6 from '../../assets/seller6.jpg'
 import verify from '../../assets/verify.png'
 import coin from '../../assets/coin.png'
 import {Link} from 'react-router-dom';
-import {getNftUrl, initSdkQr, SDK, sendEvent} from "../../service/cere-integration-service";
+import {initSdkQr, SDK, sendEvent} from "../../service/cere-integration-service";
 import {getApplicantId, getEmail, setApplicantId, setEmail} from "../../service/local-storage-service";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const Header = () => {
     var settings = {
@@ -76,6 +77,7 @@ const Header = () => {
     const [show, setShow] = useState(false)
     const [showUserCreds, setShowUserCreds] = useState(true)
     const [userId, setUserId] = useState(null);
+    const [copied, setCopied] = useState(false);
 
     function useInput({type /*...*/}) {
         const [value, setValue] = useState("");
@@ -188,6 +190,13 @@ const Header = () => {
 
             {/**************************************************************END_CERE_BLOCK**********************************************************************/}
 
+
+            {getApplicantId() &&
+                <div className="navbar-sign" style={{paddingBottom: 50}}>
+                    <CopyToClipboard text={userId}>
+                        <button type='button' className='primary-btn'>Copy User Id To Clipboard</button>
+                    </CopyToClipboard>
+                </div>}
 
             {getApplicantId() && <div className="header-content">
                 <div onClick={discoverDivClicked}>
