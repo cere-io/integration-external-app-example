@@ -77,7 +77,6 @@ const Header = () => {
     const [show, setShow] = useState(false)
     const [showUserCreds, setShowUserCreds] = useState(true)
     const [userId, setUserId] = useState(null);
-    const [copied, setCopied] = useState(false);
 
     function useInput({type /*...*/}) {
         const [value, setValue] = useState("");
