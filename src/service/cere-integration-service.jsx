@@ -39,7 +39,7 @@ export const EVENT = 'HOME_PAGE_LIVE_ONE_ENTERED';
  * Publicly available cere sdk location
  * @type {string}
  */
-const CERE_SDK_URL = 'https://sdk.dev.cere.io/v4.3.1/web.js';
+const CERE_SDK_URL = 'https://sdk.dev.cere.io/v5.0.0/web.js';
 
 export const SDK = {};
 
