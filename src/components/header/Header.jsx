@@ -163,7 +163,7 @@ const Header = () => {
               &times;
             </span>
             <h1>Special event NFT</h1>
-            <iframe id="contentIFrame" width={330} height={500} frameBorder={0}></iframe>
+            <iframe id="contentIFrame" width={500} height={900} frameBorder={0}></iframe>
           </div>
         </div>
       )}
