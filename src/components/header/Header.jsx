@@ -175,7 +175,7 @@ const Header = () => {
                         <h1>Connection details</h1>
                         <div>
                             <span>{applicantIdInput}&nbsp;Applicant Id</span>
-                            <div align={'center'} color={'black'}>
+                            <div align={'center'} color={'black'} style={{paddingTop:"20px"}}>
                                 <button type="button" onClick={applyCreds}>
                                     Apply
                                 </button>
