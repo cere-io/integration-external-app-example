@@ -148,7 +148,7 @@ const Header = () => {
     }
 
     function discoverDivClicked() {
-        sendEvent(SDK.it, 'LIVE_ONE_LIST_OF_NFTS', SDK.keyPair);
+        sendEvent(SDK.it, 'LIVE_ONE_CONTEXTUAL_ENTERED', SDK.keyPair);
     }
 
     const [applicantId, applicantIdInput] = useInput({type: 'text'});
@@ -157,10 +157,9 @@ const Header = () => {
             {show && (
                 <div className="modal">
                     <div className="modal-content1">
-            <span className="close-button" onClick={hide}>
-              &times;
-            </span>
-                        <h1>Special event NFT</h1>
+                        <span className="close-button" onClick={hide}>
+                          &times;
+                        </span>
                         <iframe id="contentIFrame" width={500} height={900} frameBorder={0}></iframe>
                     </div>
                 </div>
@@ -175,7 +174,7 @@ const Header = () => {
                         <h1>Connection details</h1>
                         <div>
                             <span>{applicantIdInput}&nbsp;Applicant Id</span>
-                            <div align={'center'} color={'black'} style={{paddingTop:"20px"}}>
+                            <div align={'center'} color={'black'} style={{paddingTop: "20px"}}>
                                 <button type="button" onClick={applyCreds}>
                                     Apply
                                 </button>
