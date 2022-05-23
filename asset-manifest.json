@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "./static/css/main.3634e58b.css",
+    "main.js": "./static/js/main.8c2ba560.js",
+    "static/media/profile_banner.png": "./static/media/profile_banner.104cc9206e6b6a00bdb0.png",
+    "static/media/item1.png": "./static/media/item1.a954e47c3818dc07809f.png",
+    "static/media/bids1.png": "./static/media/bids1.915c4163f419ea533a67.png",
+    "static/media/bids4.png": "./static/media/bids4.29928c92af9c501896ae.png",
+    "static/media/coin.png": "./static/media/coin.81bba5242c00e5dca182.png",
+    "static/media/bids3.png": "./static/media/bids3.c22ef57bfbda53fc9d6d.png",
+    "static/media/bids8.png": "./static/media/bids8.3027bda8e2231afadf74.png",
+    "static/media/profile.jpg": "./static/media/profile.c7d0f1f20d1be805561c.jpg",
+    "static/media/bids2.png": "./static/media/bids2.dcf1b08c4609c65284e2.png",
+    "static/media/bids7.png": "./static/media/bids7.02981185d801845de534.png",
+    "static/media/bids5.png": "./static/media/bids5.ea0733268793a2e99b15.png",
+    "static/media/bids6.png": "./static/media/bids6.e26d0d0c792347c35ca8.png",
+    "static/media/slick.svg": "./static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "./static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "./static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "./static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "./index.html",
+    "main.3634e58b.css.map": "./static/css/main.3634e58b.css.map",
+    "main.8c2ba560.js.map": "./static/js/main.8c2ba560.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3634e58b.css",
+    "static/js/main.8c2ba560.js"
+  ]
+}
