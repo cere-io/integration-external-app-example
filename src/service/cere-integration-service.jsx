@@ -4,7 +4,6 @@
  * Use 2095 for testing.
  * @type {string}
  */
-import Web3 from 'web3';
 import {cereWebSDK} from '@cere/sdk-js/dist/web';
 
 const applicationId = '2354';
@@ -110,24 +109,6 @@ export function initSdkQr(externalUserId, token, onEngagementFunction, onKeyPair
       document.body.removeChild(script);
     };
   }, 700);
-}
-
-function signMessage(message, privateKey) {
-  if (!privateKey) {
-    throw new Error('Private key is not found!');
-  }
-
-  const web3 = new Web3();
-  let signature;
-
-  try {
-    const wallet = web3.eth.accounts.wallet.add(privateKey);
-    signature = wallet.sign(message).signature;
-  } catch (error) {
-    throw new Error(error);
-  }
-
-  return signature;
 }
 
 /**
