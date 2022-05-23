@@ -5,6 +5,7 @@
  * @type {string}
  */
 import Web3 from 'web3';
+import {cereWebSDK} from '@cere/sdk-js/dist/web';
 
 const applicationId = '2354';
 
@@ -44,7 +45,7 @@ const CERE_SDK_URL = 'https://sdk.dev.cere.io/v5.1.1/web.js';
 export const SDK = {};
 
 function initCereSdk(type, externalUserId, token) {
-  return window.CereSDK.web.cereWebSDK(applicationId, userId, {
+  return cereWebSDK(applicationId, userId, {
     authMethod: {
       type: type,
       externalUserId: externalUserId,
