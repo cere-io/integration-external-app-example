@@ -6,7 +6,7 @@
  */
 import Web3 from 'web3';
 
-const applicationId = '2095';
+const applicationId = '2354';
 
 /**
  * Predefined user id for integration purpose.
@@ -39,7 +39,7 @@ export const EVENT = 'HOME_PAGE_LIVE_ONE_ENTERED';
  * Publicly available cere sdk location
  * @type {string}
  */
-const CERE_SDK_URL = 'https://sdk.dev.cere.io/v5.0.0/web.js';
+const CERE_SDK_URL = 'https://sdk.dev.cere.io/v5.1.1/web.js';
 
 export const SDK = {};
 
