@@ -9,11 +9,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/integration-external-app-example" element={<Home />} />
-        <Route path=":item/:id" element={<Item />} />
-        <Route path="/create" element={<Create />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/integration-external-app-example/:item/:id" element={<Item />} />
+        <Route path="/integration-external-app-example/create" element={<Create />} />
+        <Route path="/integration-external-app-example/profile/:id" element={<Profile />} />
+        <Route path="/integration-external-app-example/login" element={<Login />} />
+        <Route path="/integration-external-app-example/register" element={<Register />} />
       </Routes>
       <Footer />
     </div>
