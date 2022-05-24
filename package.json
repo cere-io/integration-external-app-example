@@ -1,6 +1,6 @@
 {
   "name": "nft-market",
-  "homepage": ".",
+  "homepage": "https://cere-io.github.io/integration-external-app-example",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
