@@ -1,6 +1,5 @@
 # Example app for the integration purposes
 
 ### How to deploy:
-```shell
-nvm exec npm run build
-```
+1. Merge changes to `gh-pages` branch
+2. Push changes to the `origin`
