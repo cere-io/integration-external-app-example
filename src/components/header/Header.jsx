@@ -148,7 +148,16 @@ const Header = () => {
     }
 
     function discoverDivClicked() {
-        sendEvent(SDK.it, 'LIVE_ONE_CONTEXTUAL_ENTERED', SDK.keyPair);
+        sendEvent(SDK.it, 'AI_DEMO_EVENT', SDK.keyPair, {
+            "session_id": "754aba9225558c3ec38376e21f25fd24",
+            "wallet_id": "0x19eDB0CA6AA0Ab4FDEe9556A29a574C031b7BF31",
+            "game_id": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569",
+            "start_time": "2023-11-08T15:26:00.796Z",
+            "duration_seconds": 227,
+            "score": 12000,
+            "latitude": 38.01,
+            "longitude": -122.2
+        });
     }
 
     const [applicantId, applicantIdInput] = useInput({type: 'text'});
@@ -156,11 +165,13 @@ const Header = () => {
         <div className="header section__padding">
             {show && (
                 <div className="modal">
-                    <div className="modal-content1">
-                        <span className="close-button" onClick={hide}>
+                    <div className="modal-content2">
+                        <div className="close-button" onClick={hide}>
                           &times;
-                        </span>
-                        <iframe id="contentIFrame" width={500} height={900} frameBorder={0}></iframe>
+                        </div>
+                        <div style={{height: '90%', paddingTop: '40px'}}>
+                            <iframe id="contentIFrame" width={"100%"} height={"100%"} frameBorder={0}></iframe>
+                        </div>
                     </div>
                 </div>
             )}
@@ -171,9 +182,11 @@ const Header = () => {
             <span className="close-button" onClick={hideUserCreds}>
               &times;
             </span>
-                        <h1>Connection details</h1>
+                        <h1>Specify context</h1>
                         <div>
-                            <span>{applicantIdInput}&nbsp;User Id</span>
+                            <div>User Id
+                                <div>{applicantIdInput}</div>
+                            </div>
                             <div align={'center'} color={'black'} style={{paddingTop: "20px"}}>
                                 <button type="button" onClick={applyCreds}>
                                     Apply
@@ -200,7 +213,7 @@ const Header = () => {
                 <div className="header-content">
                     <div onClick={discoverDivClicked}>
                         <h1>Check my special event nfts</h1>
-                        <h3 style={{color: 'white'}}>{userId}</h3>
+                        {/*<h3 style={{color: 'white'}}>{userId}</h3>*/}
                         <img className="shake-vertical" src={coin} alt=""/>
                     </div>
                 </div>

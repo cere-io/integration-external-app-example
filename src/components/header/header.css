@@ -21,6 +21,22 @@
 
 .modal-content1 {
   position: absolute;
+  min-width: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  color: black;
+  border-radius: 0.5rem;
+  border-color: black;
+}
+
+.modal-content2 {
+  overflow: auto;
+  position: absolute;
+  width: 70%;
+  height: 70%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
