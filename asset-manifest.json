@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/integration-external-app-example/static/css/main.3d30e96a.css",
-    "main.js": "/integration-external-app-example/static/js/main.bb7f8789.js",
-    "static/media/profile_banner.png": "/integration-external-app-example/static/media/profile_banner.104cc9206e6b6a00bdb0.png",
-    "static/media/item1.png": "/integration-external-app-example/static/media/item1.a954e47c3818dc07809f.png",
-    "static/media/bids1.png": "/integration-external-app-example/static/media/bids1.915c4163f419ea533a67.png",
-    "static/media/bids4.png": "/integration-external-app-example/static/media/bids4.29928c92af9c501896ae.png",
-    "static/media/coin.png": "/integration-external-app-example/static/media/coin.81bba5242c00e5dca182.png",
-    "static/media/bids3.png": "/integration-external-app-example/static/media/bids3.c22ef57bfbda53fc9d6d.png",
-    "static/media/bids8.png": "/integration-external-app-example/static/media/bids8.3027bda8e2231afadf74.png",
-    "static/media/profile.jpg": "/integration-external-app-example/static/media/profile.c7d0f1f20d1be805561c.jpg",
-    "static/media/bids2.png": "/integration-external-app-example/static/media/bids2.dcf1b08c4609c65284e2.png",
-    "static/media/bids7.png": "/integration-external-app-example/static/media/bids7.02981185d801845de534.png",
-    "static/media/bids5.png": "/integration-external-app-example/static/media/bids5.ea0733268793a2e99b15.png",
-    "static/media/bids6.png": "/integration-external-app-example/static/media/bids6.e26d0d0c792347c35ca8.png",
-    "static/media/slick.svg": "/integration-external-app-example/static/media/slick.2630a3e3eab21c607e21.svg",
-    "static/media/slick.eot": "/integration-external-app-example/static/media/slick.a4e97f5a2a64f0ab1323.eot",
-    "static/media/slick.ttf": "/integration-external-app-example/static/media/slick.c94f7671dcc99dce43e2.ttf",
-    "static/media/slick.woff": "/integration-external-app-example/static/media/slick.295183786cd8a1389865.woff",
-    "index.html": "/integration-external-app-example/index.html",
-    "main.3d30e96a.css.map": "/integration-external-app-example/static/css/main.3d30e96a.css.map",
-    "main.bb7f8789.js.map": "/integration-external-app-example/static/js/main.bb7f8789.js.map"
+    "main.css": "/static/css/main.26314ed3.css",
+    "main.js": "/static/js/main.d3c2c238.js",
+    "static/media/profile_banner.png": "/static/media/profile_banner.104cc9206e6b6a00bdb0.png",
+    "static/media/item1.png": "/static/media/item1.a954e47c3818dc07809f.png",
+    "static/media/bids1.png": "/static/media/bids1.915c4163f419ea533a67.png",
+    "static/media/bids4.png": "/static/media/bids4.29928c92af9c501896ae.png",
+    "static/media/coin.png": "/static/media/coin.81bba5242c00e5dca182.png",
+    "static/media/bids3.png": "/static/media/bids3.c22ef57bfbda53fc9d6d.png",
+    "static/media/bids8.png": "/static/media/bids8.3027bda8e2231afadf74.png",
+    "static/media/profile.jpg": "/static/media/profile.c7d0f1f20d1be805561c.jpg",
+    "static/media/bids2.png": "/static/media/bids2.dcf1b08c4609c65284e2.png",
+    "static/media/bids7.png": "/static/media/bids7.02981185d801845de534.png",
+    "static/media/bids5.png": "/static/media/bids5.ea0733268793a2e99b15.png",
+    "static/media/bids6.png": "/static/media/bids6.e26d0d0c792347c35ca8.png",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html",
+    "main.26314ed3.css.map": "/static/css/main.26314ed3.css.map",
+    "main.d3c2c238.js.map": "/static/js/main.d3c2c238.js.map"
   },
   "entrypoints": [
-    "static/css/main.3d30e96a.css",
-    "static/js/main.bb7f8789.js"
+    "static/css/main.26314ed3.css",
+    "static/js/main.d3c2c238.js"
   ]
 }
