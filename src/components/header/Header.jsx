@@ -15,6 +15,8 @@ import {Link} from 'react-router-dom';
 import {initSdkQr, SDK, sendEvent} from '../../service/cere-integration-service';
 import {getApplicantId, setApplicantId} from '../../service/local-storage-service';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import user1Json from './../../data/user1.json';
+import user2Json from './../../data/user2.json';
 
 const Header = () => {
     var settings = {
@@ -148,16 +150,19 @@ const Header = () => {
     }
 
     function discoverDivClicked() {
-        sendEvent(SDK.it, 'AI_DEMO_EVENT', SDK.keyPair, {
-            "session_id": "754aba9225558c3ec38376e21f25fd24",
-            "wallet_id": "0x19eDB0CA6AA0Ab4FDEe9556A29a574C031b7BF31",
-            "game_id": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569",
-            "start_time": "2023-11-08T15:26:00.796Z",
-            "duration_seconds": 227,
-            "score": 12000,
-            "latitude": 38.01,
-            "longitude": -122.2
-        });
+        const userPayloads = [{
+            userId: 'user1',
+            pubKey: '0x59A6a098e57114D512c3e77060F8a64264Ef57BD',
+            payload: user1Json,
+        }, {
+            userId: 'user2',
+            pubKey: '0x6Df737a290e821D67C9206BF745da11E78E6c06B',
+            payload: user2Json,
+        }];
+
+        const userPayload = userPayloads.find(payload => payload.pubKey.toLowerCase() === userId.toLowerCase())
+
+        sendEvent(SDK.it, 'AI_DEMO_EVENT', SDK.keyPair, userPayload?.payload || {});
     }
 
     const [applicantId, applicantIdInput] = useInput({type: 'text'});
@@ -167,7 +172,7 @@ const Header = () => {
                 <div className="modal">
                     <div className="modal-content2">
                         <div className="close-button" onClick={hide}>
-                          &times;
+                            &times;
                         </div>
                         <div style={{height: '90%', paddingTop: '40px'}}>
                             <iframe id="contentIFrame" width={"100%"} height={"100%"} frameBorder={0}></iframe>

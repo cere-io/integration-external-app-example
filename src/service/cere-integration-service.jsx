@@ -44,7 +44,7 @@ const CERE_SDK_URL = 'https://sdk.dev.cere.io/v5.7.4/web.js';
 export const SDK = {};
 
 function initCereSdk() {
-    return window.CereSDK.web.cereWebSDK(applicationId, userId, {
+    return window.CereSDK.web.cereWebSDK(applicationId, window.localStorage.getItem('applicantId') || userId, {
         deployment: 'dev',
     });
 }
