@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/integration-external-app-example/static/css/main.3d30e96a.css",
-    "main.js": "/integration-external-app-example/static/js/main.53944a35.js",
+    "main.css": "/integration-external-app-example/static/css/main.b470fda3.css",
+    "main.js": "/integration-external-app-example/static/js/main.ded3e92c.js",
     "static/media/profile_banner.png": "/integration-external-app-example/static/media/profile_banner.104cc9206e6b6a00bdb0.png",
     "static/media/item1.png": "/integration-external-app-example/static/media/item1.a954e47c3818dc07809f.png",
     "static/media/bids1.png": "/integration-external-app-example/static/media/bids1.915c4163f419ea533a67.png",
@@ -19,11 +19,11 @@
     "static/media/slick.ttf": "/integration-external-app-example/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/integration-external-app-example/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/integration-external-app-example/index.html",
-    "main.3d30e96a.css.map": "/integration-external-app-example/static/css/main.3d30e96a.css.map",
-    "main.53944a35.js.map": "/integration-external-app-example/static/js/main.53944a35.js.map"
+    "main.b470fda3.css.map": "/integration-external-app-example/static/css/main.b470fda3.css.map",
+    "main.ded3e92c.js.map": "/integration-external-app-example/static/js/main.ded3e92c.js.map"
   },
   "entrypoints": [
-    "static/css/main.3d30e96a.css",
-    "static/js/main.53944a35.js"
+    "static/css/main.b470fda3.css",
+    "static/js/main.ded3e92c.js"
   ]
 }
