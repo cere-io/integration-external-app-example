@@ -1,5 +1,6 @@
 import './create.css';
 import Image from '../../assets/Image.png';
+
 const Create = () => {
   return (
     <div className="create section__padding">

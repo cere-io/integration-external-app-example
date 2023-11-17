@@ -1,6 +1,7 @@
 import React from 'react';
 import './login.css';
 import {Link} from 'react-router-dom';
+
 const Login = () => {
   return (
     <div className="login section__padding">
