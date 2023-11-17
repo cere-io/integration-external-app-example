@@ -18,6 +18,19 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import user1Json from './../../data/user1.json';
 import user2Json from './../../data/user2.json';
 
+const userPayloads = [
+  {
+    userId: 'user1',
+    pubKey: '0x59A6a098e57114D512c3e77060F8a64264Ef57BD',
+    payload: user1Json,
+  },
+  {
+    userId: 'user2',
+    pubKey: '0x6Df737a290e821D67C9206BF745da11E78E6c06B',
+    payload: user2Json,
+  },
+];
+
 const Header = () => {
   var settings = {
     dots: false,
@@ -79,6 +92,7 @@ const Header = () => {
   const [show, setShow] = useState(false);
   const [showUserCreds, setShowUserCreds] = useState(true);
   const [userId, setUserId] = useState(null);
+  const [selectedUser, setSelectedUser] = useState('');
 
   function useInput({type /*...*/}) {
     const [value, setValue] = useState('');
@@ -94,9 +108,6 @@ const Header = () => {
   function onEngagementAction(template) {
     setShow(true);
     setTimeout(() => {
-      console.log('Engagement received');
-      console.log(template);
-
       var doc = document.getElementById('contentIFrame').contentWindow.document;
       doc.open();
       doc.write(template);
@@ -138,7 +149,12 @@ const Header = () => {
   }
 
   function applyCreds() {
-    setApplicantId(applicantId);
+    let val = applicantId;
+    if (selectedUser) {
+      val = selectedUser;
+    }
+
+    setApplicantId(val);
 
     setShowUserCreds(false);
 
@@ -150,19 +166,6 @@ const Header = () => {
   }
 
   function discoverDivClicked() {
-    const userPayloads = [
-      {
-        userId: 'user1',
-        pubKey: '0x59A6a098e57114D512c3e77060F8a64264Ef57BD',
-        payload: user1Json,
-      },
-      {
-        userId: 'user2',
-        pubKey: '0x6Df737a290e821D67C9206BF745da11E78E6c06B',
-        payload: user2Json,
-      },
-    ];
-
     const userPayload = userPayloads.find((payload) => payload.pubKey.toLowerCase() === userId.toLowerCase());
 
     sendEvent(SDK.it, 'AI_DEMO_EVENT', SDK.keyPair, userPayload?.payload || {});
@@ -186,18 +189,37 @@ const Header = () => {
 
       {showUserCreds && (
         <div className="modal">
-          <div className="modal-content1">
+          <div className="modal-content1 item-content-buy">
             <span className="close-button" onClick={hideUserCreds}>
               &times;
             </span>
             <h1>Specify context</h1>
-            <div>
-              <div>
+            <div className="formGroup" style={{alignItems: 'baseline'}}>
+              <label style={{width: '100%'}}>
                 User Id
                 <div>{applicantIdInput}</div>
-              </div>
-              <div align={'center'} color={'black'} style={{paddingTop: '20px'}}>
-                <button type="button" onClick={applyCreds}>
+              </label>
+              <label style={{textAlign: 'center', width: '100%'}}>or</label>
+              <label style={{width: '100%'}}>
+                Select from the list:
+                <div>
+                  <select
+                    value={selectedUser}
+                    style={{width: '100%'}}
+                    onChange={(e) => setSelectedUser(e.currentTarget.value)}
+                  >
+                    <option value={null}></option>
+                    {userPayloads.map((user) => (
+                      <option key={user.pubKey} value={user.userId}>
+                        {user.userId}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </label>
+
+              <div align={'center'} color={'black'} style={{paddingTop: '20px', width: '100%'}}>
+                <button type="button" onClick={applyCreds} className="secondary-btn">
                   Apply
                 </button>
               </div>
